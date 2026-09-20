@@ -24,7 +24,22 @@ accuracy and 1.52 percentage points in macro F1. Its median response time was
 approximately 2.5x faster. Jev produced no invalid responses; DeepSeek
 produced 3.
 
-![English full-test summary](results/full-test/full-test-summary-en.png)
+### Matched-Pair Analysis
+
+| Outcome | Count |
+| --- | ---: |
+| Both correct | 2,295 |
+| **Jev correct, DeepSeek incorrect** | **171** |
+| **Jev incorrect, DeepSeek correct** | **117** |
+| Both incorrect | 497 |
+
+The exact two-sided McNemar p-value is **0.001742**, indicating that Jev's
+advantage on these paired records is statistically significant.
+
+Jev returned a confidence/probability value, so calibration metrics were also
+calculated: **ECE = 0.0800** and **multiclass Brier score = 0.3077**. The most
+populated confidence bucket was **0.9-1.0**, with a mean confidence of
+**0.9829** and an empirical accuracy of **0.9256**.
 
 The chart below includes accuracy, macro F1, invalid-response rate, median and
 P95 API latency, and estimated cost when pricing parameters are supplied.
